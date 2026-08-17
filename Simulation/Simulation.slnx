@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Simulation.Menu/Simulation.Menu.csproj" Id="1418b5f7-a2b4-4780-b38c-fae909ad9998" />
   <Project Path="Simulation/Simulation.csproj" />
 </Solution>

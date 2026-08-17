@@ -2,18 +2,13 @@
 
 namespace Simulation.Actions;
 
-public abstract class GameAction
+public abstract class GameAction(Map map)
 {
-    protected GameAction(Map map)
-    {
-        Map = map;
-    }
-
-    public Map Map { get; protected set; }
+    public Map Map { get; protected set; } = map;
 
     public abstract void Execute();
 
-    protected void TrySpawnEntities(int currentCount, Func<Coordinates, Entity> createEntity)
+    protected void TrySpawnEntities(int currentCount, Func<Point, Entity> createEntity)
     {
         if (currentCount < EntityDefaultParameters.MinEntityCount)
         {
@@ -21,16 +16,19 @@ public abstract class GameAction
             int spawnedCount = 0;
             int spawnAttempts = 0;
             int maxSpawnAttempts = EntityDefaultParameters.MinEntityCount * toSpawn;
+
             while (spawnedCount != toSpawn && spawnAttempts < maxSpawnAttempts)
             {
                 int x = Random.Shared.Next(Map.Width);
                 int y = Random.Shared.Next(Map.Height);
-                Coordinates coordinates = new Coordinates(x, y);
-                if (!Map.IsOccupied(coordinates))
+                Point point = new Point(x, y);
+
+                if (!Map.IsOccupied(point))
                 {
-                    Map.AddEntity(coordinates, createEntity(coordinates));
+                    Map.AddEntity(createEntity(point), point);
                     spawnedCount++;
                 }
+
                 spawnAttempts++;
             }
         }

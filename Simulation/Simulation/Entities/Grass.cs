@@ -1,10 +1,6 @@
 ﻿
 namespace Simulation.Entities;
 
-internal class Grass : Entity
+internal class Grass(string sign) : Entity(sign)
 {
-    public Grass(Coordinates coordinates, string sign) 
-        : base(coordinates, sign)
-    {
-    }
 }

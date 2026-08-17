@@ -1,20 +1,22 @@
-﻿
+﻿using Simulation.Entities;
+
 namespace Simulation.Actions;
 
-public class MoveCreaturesAction : GameAction
+public class MoveCreaturesAction(Map map, PathFinder pathFinder) : GameAction(map)
 {
-    public MoveCreaturesAction(Map map, PathFinder pathFinder) 
-        : base(map)
-    {
-        PathFinder = pathFinder;
-    }
-
-    public PathFinder PathFinder { get; }
+    public PathFinder PathFinder { get; } = pathFinder;
 
     public override void Execute()
     {
-        foreach(var entity in Map.GetAllCreatures())
+        foreach (Creature entity in Map.GetAllCreatures())
         {
+            var point = Map.GetPoint(entity);
+
+            if (point is null)
+            {
+                continue;
+            }
+
             entity.MakeMove(Map, PathFinder);
         }
     }

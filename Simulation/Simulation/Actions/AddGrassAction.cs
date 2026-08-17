@@ -2,16 +2,13 @@
 
 namespace Simulation.Actions;
 
-internal class AddGrassAction : GameAction
+internal class AddGrassAction(Map map) : GameAction(map)
 {
-    public AddGrassAction(Map map) 
-        : base(map) 
-    {
-    }
-
     public override void Execute()
     {
-        TrySpawnEntities(Map.GrassCount(),
-            coordinates => new Grass(coordinates, Signs.Grass[Random.Shared.Next(Signs.Grass.Length)]));
+        TrySpawnEntities(
+            Map.GrassCount(),
+            coordinates => new Grass(Signs.Grass[Random.Shared.Next(Signs.Grass.Length)])
+        );
     }
 }

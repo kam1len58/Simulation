@@ -1,10 +1,6 @@
 ﻿
 namespace Simulation.Entities;
 
-internal class Rock : Entity
+internal class Rock(string sign) : Entity(sign)
 {
-    public Rock(Coordinates coordinates, string sign) 
-        : base(coordinates, sign)
-    {
-    }
 }

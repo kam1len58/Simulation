@@ -1,7 +1,7 @@
 ﻿
-namespace Simulation;
+namespace Simulation.Menu;
 
-static class ConsoleWorker
+public static class ConsoleWorker
 {
     public static void PrintColorText(string text, ConsoleColor consoleColor, ConsoleColor background = ConsoleColor.Black)
     {

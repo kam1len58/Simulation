@@ -1,10 +1,6 @@
 ﻿
 namespace Simulation.Entities;
 
-internal class Tree : Entity
+internal class Tree(string sign) : Entity(sign)
 {
-    public Tree(Coordinates coordinates, string sign) 
-        : base(coordinates, sign)
-    {
-    }
 }

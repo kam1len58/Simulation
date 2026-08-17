@@ -1,22 +1,27 @@
-﻿
+﻿using Simulation.Menu;
+
 namespace Simulation;
 
-class Program
+internal class Program
 {
     private static Simulation? _simulation;
 
-    static void Main()
+    private static void Main()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        (string, GameStatus)[] menuItems = [
-        ("Новая игра", GameStatus.Start),
-        ("Выйти", GameStatus.Exit),
+
+        (string Label, GameStatus Status)[] menuItems =
+        [
+            ("Новая игра", GameStatus.Start),
+            ("Выйти", GameStatus.Exit),
         ];
 
         GameSettings.SetConsoleSettings();
+
         while (true)
         {
-            GameStatus menuItem = Menu.SelectFromMenu(menuItems);
+            GameStatus menuItem = ConsoleMenu.SelectFromMenu(menuItems);
+
             switch (menuItem)
             {
                 case GameStatus.Start:
